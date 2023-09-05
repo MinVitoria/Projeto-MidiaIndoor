@@ -1,0 +1,12 @@
+.container{
+    margin:0 auto;
+    display: none;
+    flex-direction: column;
+    max-width:300px ;
+    border-radius:10px;
+}
+*{
+    margin: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+}
