@@ -9,12 +9,12 @@
 </head>
 <body>
     <div class="titulo">
-        <header>Conect Wave</header>
+        <h1>Conect Wave</h1>
     </div>
     <div class="botoes_geral">
         <div clas="botoes_esquerdo">
-            <button id="cadastras()">Cadrastar</button>
-            <button id="remover()">Remover</button>
+            <button onclick="cadastrar()">Cadastrar</button>
+            <button onclick="remover()">Remover</button>
         </div>
 
         <div class="botoes_direito">
@@ -29,19 +29,19 @@
         <br>
 
         <h3>Marca: </h3>
-        <input id="marca">
+        <input type="text" id="marca">
         <br>
 
         <h3>Texto: </h3>
-        <input id="texto">
+        <input type="text" id="texto">
         <br>
 
         <h3>Imagem/video: </h3>
-        <input id="img_video">
+        <input type="text" id="img_video">
         <br>
 
-        <h3>Tempo na tela: </h3>
-        <input id="tempo_tela">
+        <h3>Tempo na tela(s): </h3>
+        <input type="number" id="tempo_tela">
 
         <h3>Local do texto:</h3>
         <select name="locais" id="locais">
