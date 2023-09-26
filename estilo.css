@@ -1,13 +1,17 @@
 @font-face {
-    font-family: Namco;
-    src: url("vermin_vibes_1989.zip")
-  }
-h1{
+    font-family: myFirstFont;
+    src: url("fonti.ttf") format('truetype');
+ }
+  
+.ffh1{
+    font-family: myFirstFont;
     color: rgb(158, 21, 192);
     text-shadow: 3px 3px #ec22d8;
-    font-family: Namco;
-    font-size: 90px;
+    font-size: 69px;
+    text-align: center;
+    margin-top: -20px;
 }
+
 .container{
     margin:0 auto;
     display: flex;
@@ -27,7 +31,7 @@ body{
 .inicio{
     height: 150px;
     background-color: black;
-    margin:0px;
+    margin: -10px;
     box-sizing: 0px;
     width: 100%;
     padding:0px;
