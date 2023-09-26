@@ -22,5 +22,11 @@ body{
     width: 100%;
     padding:0px;
 }
+.botoes_esquerdo{
+    text-align: center;
+}
+.botoes_direito{
+    text-align: center;
+}
 
 
