@@ -38,5 +38,6 @@ body{
 .botoes_direito{
     text-align: center;
 }
-
-
+.branco{
+    opacity: 0.7;
+}
