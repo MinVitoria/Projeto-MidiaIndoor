@@ -28,7 +28,6 @@
     margin:0 auto;
     display: flex;
     flex-direction: column;
-    max-width:300px ;
     border-radius:10px;
 }
 body{
@@ -44,12 +43,14 @@ body{
     padding:0px;
 }
 .botoes_esquerdo{
-    text-align: center;
-}
-.botoes_direito{
-    text-align: center;
+    padding-left: 146px;
 }
 .branco{
     background-color: rgba(255, 255, 255, 0.463);
     border-radius: 20px;
+}
+.corzinha{
+    background-color: black;
+    border: 0px;
+    font-size: 20px;
 }
