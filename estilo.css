@@ -6,7 +6,7 @@
     border-radius:10px;
 }
 *{
-    margin: 5px;
+    /* margin: 5px; */
     padding: 5px;
     box-sizing: border-box;
 }
@@ -17,6 +17,10 @@ body{
 .inicio{
     height: 150px;
     background-color: black;
+    margin:0px;
+    box-sizing: 0px;
+    width: 100%;
+    padding:0px;
 }
 
 
