@@ -1,3 +1,13 @@
+@font-face {
+    font-family: Namco;
+    src: url("vermin_vibes_1989.zip")
+  }
+h1{
+    color: rgb(158, 21, 192);
+    text-shadow: 3px 3px #ec22d8;
+    font-family: Namco;
+    font-size: 90px;
+}
 .container{
     margin:0 auto;
     display: flex;
@@ -6,7 +16,7 @@
     border-radius:10px;
 }
 *{
-    /* margin: 5px; */
+    margin: 5px; 
     padding: 5px;
     box-sizing: border-box;
 }
