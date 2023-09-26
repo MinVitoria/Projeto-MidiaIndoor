@@ -1,3 +1,8 @@
+*{
+    margin: 0px; 
+    padding: 0px;
+    box-sizing: border-box;
+}
 @font-face {
     font-family: myFirstFont;
     src: url("fonti.ttf") format('truetype');
@@ -7,22 +12,24 @@
     font-family: myFirstFont;
     color: rgb(158, 21, 192);
     text-shadow: 3px 3px #ec22d8;
-    font-size: 69px;
+    font-size: 70px;
     text-align: center;
     margin-top: -20px;
 }
-
+.ffh1-2{
+    font-family: myFirstFont;
+    color: rgb(158, 21, 192);
+    text-shadow: 3px 3px #ec22d8;
+    font-size: 70px;
+    text-align: center;
+    margin-top: -50px;
+}
 .container{
     margin:0 auto;
     display: flex;
     flex-direction: column;
     max-width:300px ;
     border-radius:10px;
-}
-*{
-    margin: 5px; 
-    padding: 5px;
-    box-sizing: border-box;
 }
 body{
     background-image: url("https://steamuserimages-a.akamaihd.net/ugc/1004808250869569311/0BBF5155BAA4CF943C683701E86178CA3E25A84E/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false.gif");
