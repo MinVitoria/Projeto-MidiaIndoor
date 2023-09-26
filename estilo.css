@@ -18,5 +18,11 @@ body{
     height: 150px;
     background-color: black;
 }
+.botoes_esquerdo{
+    text-align: center;
+}
+.botoes_direito{
+    text-align: center;
+}
 
 
