@@ -7,6 +7,8 @@ function esconder(id){
 }
 function cadastrar(){
     trocar("cadastrar");
+    trocar("ola")
+    trocar("imagem")
 
 }
 function remover(){
