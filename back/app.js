@@ -59,19 +59,6 @@ app.get("/midia/mostrar", async (req, res) => {
 
     }
 })
-// tentando puxar a tabela
-document.getElementById('btnCarregarTabela').addEventListener('click', async () => {
-    try {
-      const response = await fetch('http://localhost:3000/api/midia');
-      const tabela = await response.json();
-      console.log(tabela);
-
-      // Fazer algo com os dados da tabela, como exibir em uma lista no frontend.
-      
-    } catch (error) {
-      console.error(`Erro na requisição: ${error}`);
-    }
-  });
 
 // Rota DELETE - Pedro
 app.delete("/midia/midia/:id",async (req, res) => {
@@ -90,7 +77,7 @@ app.delete("/midia/midia/:id",async (req, res) => {
  })
  
  // Rota Listar/Select - Pedro
- app.delete("/midia/midia/:id",async (req, res) => {
+ app.get("/midia/midia/:id",async (req, res) => {
     try{
         const id_passado = req.params.id
         const conexao = await pool.getConnection()
