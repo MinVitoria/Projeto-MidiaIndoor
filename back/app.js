@@ -22,3 +22,104 @@ const pool = mysql.createPool({
     connectionLimit: 3,
     queueLimit:0
 })
+
+// rota Cadastrar - Yasmin Izaura
+app.post('/midia/cadastrar', async (req,res)=>{
+    try{
+        const cadastro = req.params.cadastro
+        const conexao= await pool.getConnection()
+        const sql_cadastro = `INSERT INTO midia (nome, tipo, status, data_inicio, data_fim, url, tempo) VALUE "${nome}", "${tipo}", "${status}", "${data_inicio}", "${data_fim}", "${url}", "${tempo}"`
+        const [linhas] = await conexao.execute(sql_cadastro)
+        console.log([linhas])
+        conexao.release()
+        res.json(linhas[0])
+ 
+    } catch(error){
+        console.log(`O Erro que ocorreu foi:${error}`)
+        res.send(500).json({error:"Deu algum erro na busca"})
+    }
+ 
+})
+
+
+// Rota Mostrar - Beatriz  =)
+app.get("/midia/mostrar", async (req, res) => {
+    try {
+
+        const conexao = await pool.getConnection()
+        const arquivos_sql = `SELECT * FROM midia` 
+        const [linhas] = await conexao.execute(sql)
+        conexao.release()
+        res.json(linhas[0])
+
+    } catch  (error) {
+        console.log(`O Erro que ocorreu foi: ${error}`)
+        res.status(500).json({error: "Deu algum erro na conexão"})
+
+
+    }
+})
+// tentando puxar a tabela
+document.getElementById('btnCarregarTabela').addEventListener('click', async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/midia');
+      const tabela = await response.json();
+      console.log(tabela);
+
+      // Fazer algo com os dados da tabela, como exibir em uma lista no frontend.
+      
+    } catch (error) {
+      console.error(`Erro na requisição: ${error}`);
+    }
+  });
+
+// Rota DELETE - Pedro
+app.delete("/midia/midia/:id",async (req, res) => {
+    try{
+        const id_passado = req.params.id
+        const conexao = await pool.getConnection()
+        const sql = `DELETE FROM midia WHERE id=${id_passado}`
+        const [linhas] = await conexao.execute(sql)
+        console.log([linhas])
+        conexao.release()
+        res.json(linhas[0])
+    }catch(error){
+        console.log(`O Erro que ocorreu foi ${error}`)
+        res.send(500).json({error:"Deu algum erro no delete"})
+    }
+ })
+ 
+ // Rota Listar/Select - Pedro
+ app.delete("/midia/midia/:id",async (req, res) => {
+    try{
+        const id_passado = req.params.id
+        const conexao = await pool.getConnection()
+        const sql = `SELECT * FROM midia LIKE "%${nome}%"`
+        const [linhas] = await conexao.execute(sql)
+        console.log([linhas])
+        conexao.release()
+        res.json(linhas[0])
+    }catch(error){
+        console.log(`O Erro que ocorreu foi ${error}`)
+        res.send(500).json({error:"Deu algum erro no delete"})
+    }
+ })
+
+
+
+//ROTA PARA O UPDATE/EDITAR
+app.put("/midia/edit/", async(req,res)=>{
+    try{
+        const {id, nome, tipo, status, data_inicio, data_fim, url, tempo}=req.body
+
+        const conexao= await pool.getConnection()
+        const sql = `UPDATE midia SET nome="${nome}", tipo="${tipo}", status="${status}", data_inicio="${data_inicio}", data_fim="${data_fim}", url="${url}", tempo="${tempo} WHERE  id=${id}`
+        const [linhas] = await conexao.execute(sql)
+        console.log([linhas])
+        conexao.release()
+        res.json(linhas[0])
+    } catch(error){
+        console.log(`O Erro que ocorreu foi:${error}`)
+        res.send(500).json({error:"Deu algum erro na atualização"})
+    }
+})

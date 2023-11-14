@@ -1,34 +1,39 @@
 document.getElementById("btn_cad").addEventListener("click",cadastrar)
 
+document.getElementById("btn_ed").addEventListener("click",editar)
 
 
-
-function trocar(id){
-     document.getElementById(id).classList.toggle("d-none");
-
+function aparecer(id){
+     document.getElementById(id).classList.remove("d-none");
+}
+function sumir(id){
+    document.getElementById(id).classList.add("d-none");
 }
 
 function cadastrar(){
-    trocar("cadastrar");
-    trocar("ola");
-    trocar("imagem");
+    aparecer("cadastrar");
+    sumir("ola");
+    sumir("imagem");
 
 }
 function remover(){
 
 }
 function editar(){
-    
-    
-}
-function mostrar(){
-
-
-
-
-
+    aparecer("editar")
+    sumir("ola");
+    sumir("imagem");
+    sumir("cadastrar");
     
 }
+
+// Mostrar
+function mostrar(){ 
+
+}
+
+
+
 function listar(){
 
 }
