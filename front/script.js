@@ -1,14 +1,17 @@
+document.getElementById("btn_cad").addEventListener("click",cadastrar)
+
+
+
+
 function trocar(id){
      document.getElementById(id).classList.toggle("d-none");
 
 }
-function esconder(id){
-    document.getElementById(id).classList.add("d-none");
-}
+
 function cadastrar(){
     trocar("cadastrar");
-    trocar("ola")
-    trocar("imagem")
+    trocar("ola");
+    trocar("imagem");
 
 }
 function remover(){
