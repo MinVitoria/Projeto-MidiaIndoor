@@ -23,6 +23,11 @@ function editar(){
 }
 function mostrar(){
 
+
+
+
+
+    
 }
 function listar(){
 
