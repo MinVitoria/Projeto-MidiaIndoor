@@ -50,7 +50,7 @@ btn_add.addEventListener("click", async () => {
     });
 
     if (dados.ok) {
-        btn_cad.click()
+        btn_cad_tela.click()
 
     }
 })
@@ -110,7 +110,7 @@ async function listar() {
     <tbody>`
 
 
-    document.getElementById("saida_listar").innerHTML = html
+    document.getElementById("saida_listar").innerHTML
 
 let resposta = await fetch("http://localhost:3307/midia/midia/:id");
 
@@ -171,13 +171,3 @@ async function mostrar() {
 
     }
  }
-
-    //   <div class="alert alert-primary" role="alert">${tempo}</div>
-    //   <div class="alert alert-primary" role="alert">${data_inicio}</div>
-    //   <div class="alert alert-primary" role="alert">${data_fim}</div>
-    //   <div class="alert alert-primary" role="alert">${status}</div>
-      
-    //   acima as informações restantes
-//     } 
-
-// }
