@@ -169,9 +169,6 @@ async function mostrar() {
         </div>
       </div>`
 
-    } else if {
-        
-
     }
  }
 
