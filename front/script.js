@@ -196,9 +196,9 @@ async function mostrar() {
   if (opcao == "todos") {
     resposta = await fetch(`http://localhost:3307/midia/mostrar`);
   } else if (opcao == "id") {
-    resposta = await fetch(`http://localhost:3307/midia/id/${id}`);
+    resposta = await fetch(`http://localhost:3307/midia/id/${input_buscar}`);
   } else if (opcao == "nome") {
-    resposta = await fetch(`http://localhost:3307/midia/midia/:id`);
+    resposta = await fetch(`http://localhost:3307/midia/nome/${input_buscar}`);
   }
 
  if (resposta.ok) {
