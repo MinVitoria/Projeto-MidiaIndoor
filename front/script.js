@@ -97,40 +97,40 @@ async function buscar() {
     sumir("cadastrar")
     sumir("mostrar")
 
-    let html = `<table class="table">
-    <thead>
-      <tr>    
-        <th scope="col">ID</th>
-        <th scope="col" class='text-start'>Nome</th>
-        <th scope="col" class='text-start'>Status</th>
-        <th scope="col">Editar</i></th>
-        <th scope="col">Excluir</th>
-      </tr>
-    </thead>
-    <tbody>`
+//     let html = `<table class="table">
+//     <thead>
+//       <tr>    
+//         <th scope="col">ID</th>
+//         <th scope="col" class='text-start'>Nome</th>
+//         <th scope="col" class='text-start'>Status</th>
+//         <th scope="col">Editar</i></th>
+//         <th scope="col">Excluir</th>
+//       </tr>
+//     </thead>
+//     <tbody>`
 
 
-    document.getElementById("saida_buscar").innerHTML
+//     document.getElementById("saida_buscar").innerHTML
 
-let resposta = await fetch("http://localhost:3307/midia/midia/:id");
+// let resposta = await fetch("http://localhost:3307/midia/midia/:id");
 
-if (resposta.ok) {
+// if (resposta.ok) {
     
-    let res= await resposta.json();
+//     let res= await resposta.json();
 
-    for (let element of res){
-        html +=
-        `<tr>                
-         <td>${element.id}</td>
-        <td class='text-start'>${element.nome}</td>
-         <td class='text-start'>${element.status}</td>
-        <td><i onclick="editar_info(${element.id})" class="bi bi-pencil"></td>
-         <td><i onclick="excluir(${element.id})" class="bi bi-trash"></i></td>
-         </tr>`
-    }
+//     for (let element of res){
+//         html +=
+//         `<tr>                
+//          <td>${element.id}</td>
+//         <td class='text-start'>${element.nome}</td>
+//          <td class='text-start'>${element.status}</td>
+//         <td><i onclick="editar_info(${element.id})" class="bi bi-pencil"></td>
+//          <td><i onclick="excluir(${element.id})" class="bi bi-trash"></i></td>
+//          </tr>`
+//     }
 
-}
- html=html
+// }
+//  html=html
 }
 
 // mostrar e sumir ou outros
@@ -174,62 +174,59 @@ async function mostrar() {
 
  btn_para_buscar.addEventListener("click", async () => {
   let input_buscar = document.getElementById("input_buscar").value;
-  let opcao = document.getElementById("nome, tipo, url, tempo, status, data_inicio, data_fim").value;
+  let opcao = document.getElementById("opcoes").value;
   let html = `<table class="table">
                 <thead>
                   <tr>    
-                    <th scope="col">Nome</th>
-                    <th scope="col" class='text-start'>Tipo</th>
-                    <th scope="col" class='text-start'>Url</th>
-                    <th scope="col" class='text-start>Tempo</i></th>
-                    <th scope="col" class='text-start>Status</th>
-                    <th scope="col" class='text-start>Data inicial</th>
-                    <th scope="col" class='text-start>Data final</th>
+                    <th scope="col">ID</th>
+                    <th scope="col" class='text-start'>Nome</th>
+                    <th scope="col" class='text-start'>Status</th>
+                    <th scope="col" class='text-start'>Editar</th>
+                    <th scope="col" class='text-start'>Remover</th>
                   </tr>
                 </thead>
                 <tbody>`;
   
   document.getElementById("saida_buscar").innerHTML = "";
-  document.getElementById("input_busca").value = ""
+  document.getElementById("input_buscar").value = ""
 
   let resposta = "";
   if (opcao == "todos") {
     resposta = await fetch(`http://localhost:3307/midia/mostrar`);
   } else if (opcao == "id") {
-    resposta = await fetch(`http://localhost:3307/midia/id/${id}`);
+    resposta = await fetch(`http://localhost:3307/midia/id/${input_buscar}`);
   } else if (opcao == "nome") {
-    resposta = await fetch(`http://localhost:3307/midia/midia/:id`);
+    resposta = await fetch(`http://localhost:3307/midia/nome/${input_buscar}`);
   }
 
- if (resposta.ok) {
+//  
+
+if (resposta.ok) {
   html = html;
   let array_resultado = await resposta.json();
-  if (opcao == "todos" || opcao =="nome") {
-    for (const midia of array_resultado) {
+  if (opcao == "todos" || opcao == "nome") {
+    for (const dados of array_resultado) {
       html += `<tr>                
-      <td>${midia.id}</td>
-      <td class='text-start'>${midia.nome}</td>
-      <td class='text-start'>${midia.tipo}</td>
-      <td class='text-start'>(${midia.url})</td>
-      <td class='text-start'>(${midia.tempo})</td>
-      <td class='text-start'>${midia.status}</td>
-      <td class='text-start'>${midia.data_inicio}</td>
-      <td class='text-start'>${midia.data_fim}</td>
+      <td>${dados.id}</td>
+      <td class='text-start'>${dados.nome}</td>
+      <td class='text-start'>${dados.status}</td>
+      <td><i onclick="editar(${dados.id})" class="bi bi-pencil"></td>
+      <td><i onclick="excluir(${dados.id})" class="bi bi-trash"></i></td>
       </tr>`;
     }
   } else if (opcao == "id") {
     html += `<tr>                
       <td>${array_resultado.id}</td>
       <td class='text-start'>${array_resultado.nome}</td>
-      <td class='text-start'>${array_resultado.tipo}</td>
-      <td><i class="bi bi-pencil"></td>
-      <td><i class="bi bi-trash"></i></td>
+      <td class='text-start'>${array_resultado.status}</td>
+      <td><i onclick="editar(${array_resultado.id})" class="bi bi-pencil"></i></td>
+      <td><i onclick="excluir(${array_resultado.id})"class="bi bi-trash"></i></td>
       </tr>`;
   }
 
   html += `</tbody></table>`;
 }
-document.getElementById("saida").innerHTML = html;
+document.getElementById("saida_buscar").innerHTML = html;
 
 });
 

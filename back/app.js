@@ -50,10 +50,10 @@ app.get("/midia/mostrar", async (req, res) => {
     try {
 
         const conexao = await pool.getConnection()
-        const arquivos_sql = `SELECT * FROM midia` 
+        const sql = `SELECT * FROM midia` 
         const [linhas] = await conexao.execute(sql)
         conexao.release()
-        res.json(linhas[0])
+        res.json(linhas)
 
     } catch  (error) {
         console.log(`O Erro que ocorreu foi: ${error}`)
@@ -119,11 +119,11 @@ app.get("/midia/nome/:nome",async (req, res) => {
     try{
         const nome = req.params.nome
         const conexao = await pool.getConnection()
-        const sql = `SELECT * FROM midia where nome like '%${nome}% `
+        const sql = `SELECT * FROM midia where nome like '%${nome}%'`
         const [linhas] = await conexao.execute(sql)
         console.log([linhas])
         conexao.release()
-        res.json(linhas[0])
+        res.json(linhas)
     }catch(error){
         console.log(`O Erro que ocorreu foi ${error}`)
         res.send(500).json({error:"Deu algum erro no delete"})
