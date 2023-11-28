@@ -80,11 +80,11 @@ app.delete("/midia/midia/:id",async (req, res) => {
  })
  
  // Rota Listar/Select - Pedro
- app.get("/midia/midia/:id",async (req, res) => {
+ app.get("/midia/id/:id",async (req, res) => {
     try{
         const id_passado = req.params.id
         const conexao = await pool.getConnection()
-        const sql = `SELECT * FROM midia`
+        const sql = `SELECT * FROM midia where id = ${id_passado}`
         const [linhas] = await conexao.execute(sql)
         console.log([linhas])
         conexao.release()
@@ -113,3 +113,19 @@ app.put("/midia/edit/", async(req,res)=>{
         res.send(500).json({error:"Deu algum erro na atualização"})
     }
 })
+
+// rota nome yasmin izaura 
+app.get("/midia/nome/:nome",async (req, res) => {
+    try{
+        const nome = req.params.nome
+        const conexao = await pool.getConnection()
+        const sql = `SELECT * FROM midia where nome like '%${nome}% `
+        const [linhas] = await conexao.execute(sql)
+        console.log([linhas])
+        conexao.release()
+        res.json(linhas[0])
+    }catch(error){
+        console.log(`O Erro que ocorreu foi ${error}`)
+        res.send(500).json({error:"Deu algum erro no delete"})
+    }
+ })

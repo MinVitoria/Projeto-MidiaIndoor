@@ -27,7 +27,7 @@
             <br>
             <button type="button" class="btn btn-dark mt-2 corzinha " id="btn_mos">Mostrar</button>
             <br>
-            <button type="button" class="btn btn-dark mt-2 corzinha " id="btn_lis">Listar</button>
+            <button type="button" class="btn btn-dark mt-2 corzinha " id="btn_bus">Buscar</button>
         </div>
     </div>
 
@@ -121,17 +121,20 @@
 
     <!-- mostrar -->
     
-
-    <div id="listar">
+    <div id="buscar">
         <h2>Lista:<h2>
-            <div id="saida_listar">
+            <div id="saida_buscar">
+                <input type="text" class="form-control col-7" id="input_buscar" placeholder="Digite sua busca">
+                <button type="button" class="btn btn-dark" id="btn_para_buscar">Buscar informações</button>
             </div>
-
     </div>
+
     <div id="mostrar">
-        <h2>Mostar:</h2>
+        <h2>Mostrar:</h2>
+        <div id="saida">
+            <!-- div saida para mostrar a busca-->
+        </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>

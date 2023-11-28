@@ -2,7 +2,7 @@ const btn_cad_tela = document.getElementById("btn_cad");
 const btn_ed = document.getElementById("btn_ed");
 const btn_rem = document.getElementById("btn_rem");
 const btn_mos = document.getElementById("btn_mos");
-const btn_lis = document.getElementById("btn_lis");
+const btn_bus = document.getElementById("btn_bus");
 const btn_add = document.getElementById("btn_add");
 
 
@@ -10,7 +10,7 @@ btn_cad_tela.addEventListener("click", cadastrar)
 
 btn_ed.addEventListener("click", editar)
 
-btn_lis.addEventListener("click", listar)
+btn_bus.addEventListener("click", buscar)
 
 // Evento ao clicar em mostrar
 btn_mos.addEventListener("click", mostrar)
@@ -90,8 +90,8 @@ async function editar_info(id){
     }
   }
 
-async function listar() {
-    aparecer("listar");
+async function buscar() {
+    aparecer("buscar");
     sumir("ola");
     sumir("imagem");
     sumir("cadastrar")
@@ -110,7 +110,7 @@ async function listar() {
     <tbody>`
 
 
-    document.getElementById("saida_listar").innerHTML
+    document.getElementById("saida_buscar").innerHTML
 
 let resposta = await fetch("http://localhost:3307/midia/midia/:id");
 
@@ -171,3 +171,69 @@ async function mostrar() {
 
     }
  }
+
+ btn_para_buscar.addEventListener("click", async () => {
+  let input_buscar = document.getElementById("input_buscar").value;
+  let opcao = document.getElementById("nome, tipo, url, tempo, status, data_inicio, data_fim").value;
+  let html = `<table class="table">
+                <thead>
+                  <tr>    
+                    <th scope="col">Nome</th>
+                    <th scope="col" class='text-start'>Tipo</th>
+                    <th scope="col" class='text-start'>Url</th>
+                    <th scope="col" class='text-start>Tempo</i></th>
+                    <th scope="col" class='text-start>Status</th>
+                    <th scope="col" class='text-start>Data inicial</th>
+                    <th scope="col" class='text-start>Data final</th>
+                  </tr>
+                </thead>
+                <tbody>`;
+  
+  document.getElementById("saida_buscar").innerHTML = "";
+  document.getElementById("input_busca").value = ""
+
+  let resposta = "";
+  if (opcao == "todos") {
+    resposta = await fetch(`http://localhost:3307/midia/mostrar`);
+  } else if (opcao == "id") {
+    resposta = await fetch(`http://localhost:3307/midia/id/${id}`);
+  } else if (opcao == "nome") {
+    resposta = await fetch(`http://localhost:3307/midia/midia/:id`);
+  }
+
+ if (resposta.ok) {
+  html = html;
+  let array_resultado = await resposta.json();
+  if (opcao == "todos" || opcao =="nome") {
+    for (const midia of array_resultado) {
+      html += `<tr>                
+      <td>${midia.id}</td>
+      <td class='text-start'>${midia.nome}</td>
+      <td class='text-start'>${midia.tipo}</td>
+      <td class='text-start'>(${midia.url})</td>
+      <td class='text-start'>(${midia.tempo})</td>
+      <td class='text-start'>${midia.status}</td>
+      <td class='text-start'>${midia.data_inicio}</td>
+      <td class='text-start'>${midia.data_fim}</td>
+      </tr>`;
+    }
+  } else if (opcao == "id") {
+    html += `<tr>                
+      <td>${array_resultado.id}</td>
+      <td class='text-start'>${array_resultado.nome}</td>
+      <td class='text-start'>${array_resultado.tipo}</td>
+      <td><i class="bi bi-pencil"></td>
+      <td><i class="bi bi-trash"></i></td>
+      </tr>`;
+  }
+
+  html += `</tbody></table>`;
+}
+document.getElementById("saida").innerHTML = html;
+
+});
+
+async function editar(id){
+  
+}
+
