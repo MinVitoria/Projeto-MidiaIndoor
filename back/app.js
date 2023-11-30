@@ -80,7 +80,7 @@ app.get("/midia/mostrar", async (req, res) => {
 
 
 // Rota DELETE - Pedro
-app.delete('/midia/deletar/:id', async (req, res) => {
+app.delete('/midia/remover/:id', async (req, res) => {
    try {
        const { id } = req.params;
        const conexao = await pool.getConnection();

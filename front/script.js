@@ -6,6 +6,7 @@ const btn_mos = document.getElementById("btn_mos");
 const btn_bus = document.getElementById("btn_bus");
 const btn_add = document.getElementById("btn_add");
 const btn_at = document.getElementById("btn_at");
+const btn_para_busca= document.getElementById("btn_para_busca")
 
 btn_ini.addEventListener("click", iniciar)
 
@@ -15,7 +16,6 @@ btn_ed.addEventListener("click", editar)
 
 btn_bus.addEventListener("click", buscar)
 
-btn_at.addEventListener("click", atualizar)
 
 // Evento ao clicar em mostrar
 btn_mos.addEventListener("click", mostrar)
@@ -27,6 +27,30 @@ function iniciar(){
   sumir("buscar");
   sumir("editar")
 }
+
+btn_at.addEventListener("click", async()=>{
+
+  const nome_atual= document.getElementById("nv_nome").value
+  const tipo_atual= document.getElementById("nv_tipo").value
+  const url_atual= document.getElementById("nv_url").value
+  const tempo_atual= document.getElementById("nv_tempo").value
+  const d_i_atual= document.getElementById("nv_data_i").value
+  const d_f_atual= document.getElementById("nv_data_f").value
+  const status_atual= document.getElementById("nv_status").value
+
+  let dados = await fetch("http://localhost:3307/midia/edit/", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({nome: nome_atual,tipo: tipo_atual,url: url_atual,tempo: tempo_atual,status: status_atual, data_inicio: d_i_atual, data_fim: d_f_atual  }),
+  });
+
+  if(dados.ok){
+    btn_bus.click()
+    btn_para_busca.click()
+  }
+})
 
 function aparecer(id) {
     document.getElementById(id).classList.remove("d-none");
@@ -45,32 +69,26 @@ function cadastrar() {
 
 }
 
-btn_add.addEventListener("click", async () => {
 
-    let nome = document.getElementById("nome").value
-    let tipo = document.getElementById("tipo").value
-    let url = document.getElementById("url").value
-    let tempo = document.getElementById("tempo").value
-    let data_inicio = document.getElementById("data_i").value
-    let data_fim = document.getElementById("data_f").value
-    let status = document.getElementById("status").value
-
-    let dados = await fetch(`http://localhost:3307/midia/cadastrar`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ nome: nome, tipo: tipo, url: url, tempo: tempo, status: status, data_inicio: data_inicio, data_fim: data_fim }),
+async function remover() {
+  const resultado = window.confirm("Deseja excluir este usuário?");
+  if (resultado) {
+    let dados = await fetch(`http://localhost:3307/midia/remover/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: stringify.json({id:id})
     });
 
-    if (dados.ok) {
-        btn_cad_tela.click()
-
+    if(dados.ok){
+      btn_tela_busca.click()
+      btn_select.click()
     }
-})
-function remover() {
+  } 
+ }
+ 
 
-}
 function editar() {
     aparecer("editar");
     sumir("ola");
@@ -106,13 +124,13 @@ async function editar_info(id){
     }
   }
 
-async function buscar() {
+function buscar() {
     aparecer("buscar");
     sumir("ola");
     sumir("imagem");
-    sumir("cadastrar")
-    sumir("mostrar")
-    sumir("editar")
+    sumir("cadastrar");
+    sumir("mostrar");
+    sumir("editar");
 
 }
 
@@ -155,7 +173,7 @@ async function mostrar() {
     }
  }
 
- btn_para_buscar.addEventListener("click", async () => {
+ btn_para_busca.addEventListener("click", async () => {
   let input_buscar = document.getElementById("input_buscar").value;
   let opcao = document.getElementById("opcoes").value;
   let html = `<table class="table">
