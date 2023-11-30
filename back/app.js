@@ -64,36 +64,39 @@ app.get("/midia/mostrar", async (req, res) => {
 })
 
 // Rota DELETE - Pedro
-app.delete("/midia/midia/:id",async (req, res) => {
-    try{
-        const id_passado = req.params.id
-        const conexao = await pool.getConnection()
-        const sql = `DELETE FROM midia WHERE id=${id_passado}`
-        const [linhas] = await conexao.execute(sql)
-        console.log([linhas])
-        conexao.release()
-        res.json(linhas[0])
-    }catch(error){
-        console.log(`O Erro que ocorreu foi ${error}`)
-        res.send(500).json({error:"Deu algum erro no delete"})
-    }
- })
+app.delete('/midia/deletar/:id', async (req, res) => {
+   try {
+       const { id } = req.params;
+       const conexao = await pool.getConnection();
+       const sql = `DELETE FROM midia WHERE id = ${id}`;
+       const [linhas] = await conexao.execute(sql);
+       conexao.release();
+       if(linhas.affectedRows > 0){
+           res.json({message: 'Deletado com sucesso!'});
+       } else {
+           res.json({message: `Não foi possível deletar o registro com id=${id}`});
+       }
+   } catch (error) {
+       console.log(`O Erro que ocorreu foi: ${error}`);
+       res.status(500).json({error: "Deu algum erro na exclusão"});
+   }
+});
+
  
  // Rota Listar/Select - Pedro
- app.get("/midia/id/:id",async (req, res) => {
-    try{
-        const id_passado = req.params.id
-        const conexao = await pool.getConnection()
-        const sql = `SELECT * FROM midia where id = ${id_passado}`
-        const [linhas] = await conexao.execute(sql)
-        console.log([linhas])
-        conexao.release()
-        res.json(linhas[0])
-    }catch(error){
-        console.log(`O Erro que ocorreu foi ${error}`)
-        res.send(500).json({error:"Deu algum erro no delete"})
-    }
- })
+app.get("/midia/mostrar", async (req, res) => {
+   try {
+       const conexao = await pool.getConnection()
+       const sql = `SELECT * FROM midia` 
+       const [linhas] = await conexao.execute(sql)
+       conexao.release()
+       res.json(linhas)
+   } catch (error) {
+       console.log(`O Erro que ocorreu foi: ${error}`)
+       res.status(500).json({error: "Deu algum erro na conexão"})
+   }
+})
+
 
 
 
