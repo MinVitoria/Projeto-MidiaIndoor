@@ -1,10 +1,13 @@
 const btn_cad_tela = document.getElementById("btn_cad");
 const btn_ed = document.getElementById("btn_ed");
 const btn_rem = document.getElementById("btn_rem");
+const btn_ini = document.getElementById("btn_ini");
 const btn_mos = document.getElementById("btn_mos");
 const btn_bus = document.getElementById("btn_bus");
 const btn_add = document.getElementById("btn_add");
+const btn_at = document.getElementById("btn_at");
 
+btn_ini.addEventListener("click", iniciar)
 
 btn_cad_tela.addEventListener("click", cadastrar)
 
@@ -12,9 +15,18 @@ btn_ed.addEventListener("click", editar)
 
 btn_bus.addEventListener("click", buscar)
 
+btn_at.addEventListener("click", atualizar)
+
 // Evento ao clicar em mostrar
 btn_mos.addEventListener("click", mostrar)
 
+function iniciar(){
+  aparecer("ola");
+  aparecer("imagem");
+  sumir("cadastrar");
+  sumir("buscar");
+  sumir("editar")
+}
 
 function aparecer(id) {
     document.getElementById(id).classList.remove("d-none");
@@ -28,6 +40,8 @@ function cadastrar() {
     sumir("ola");
     sumir("imagem");
     sumir("editar");
+    sumir("buscar")
+    sumir("mostrar")
 
 }
 
@@ -62,21 +76,23 @@ function editar() {
     sumir("ola");
     sumir("imagem");
     sumir("cadastrar");
+    sumir("buscar")
+    sumir("mostrar")
 
 }
 
 async function editar_info(id){
-    aparecer("editar");
-    sumir("ola");
-    sumir("imagem");
-    sumir("cadastrar")
+  aparecer("editar");
+  sumir("ola");
+  sumir("imagem");
+  sumir("cadastrar");
+  sumir("buscar")
+  sumir("mostrar")
 
-    let resposta = await fetch(`http://localhost:3307/midia/edit/${id}`)
+    let resposta = await fetch(`http://localhost:3307/midia/edit/id/${id}`)
     if(resposta.ok){//verificar se retornou status code 200-ok para a busca
       
     let dados = await resposta.json()
-
-      console.clear()
       console.log(dados)
     //   btn_mos.click()
       document.getElementById("nv_nome").value = dados.nome
@@ -96,41 +112,8 @@ async function buscar() {
     sumir("imagem");
     sumir("cadastrar")
     sumir("mostrar")
+    sumir("editar")
 
-//     let html = `<table class="table">
-//     <thead>
-//       <tr>    
-//         <th scope="col">ID</th>
-//         <th scope="col" class='text-start'>Nome</th>
-//         <th scope="col" class='text-start'>Status</th>
-//         <th scope="col">Editar</i></th>
-//         <th scope="col">Excluir</th>
-//       </tr>
-//     </thead>
-//     <tbody>`
-
-
-//     document.getElementById("saida_buscar").innerHTML
-
-// let resposta = await fetch("http://localhost:3307/midia/midia/:id");
-
-// if (resposta.ok) {
-    
-//     let res= await resposta.json();
-
-//     for (let element of res){
-//         html +=
-//         `<tr>                
-//          <td>${element.id}</td>
-//         <td class='text-start'>${element.nome}</td>
-//          <td class='text-start'>${element.status}</td>
-//         <td><i onclick="editar_info(${element.id})" class="bi bi-pencil"></td>
-//          <td><i onclick="excluir(${element.id})" class="bi bi-trash"></i></td>
-//          </tr>`
-//     }
-
-// }
-//  html=html
 }
 
 // mostrar e sumir ou outros
@@ -210,7 +193,7 @@ if (resposta.ok) {
       <td>${dados.id}</td>
       <td class='text-start'>${dados.nome}</td>
       <td class='text-start'>${dados.status}</td>
-      <td><i onclick="editar(${dados.id})" class="bi bi-pencil"></td>
+      <td><i onclick="editar_info(${dados.id})" class="bi bi-pencil"></td>
       <td><i onclick="excluir(${dados.id})" class="bi bi-trash"></i></td>
       </tr>`;
     }
@@ -230,7 +213,4 @@ document.getElementById("saida_buscar").innerHTML = html;
 
 });
 
-async function editar(id){
-  
-}
 

@@ -43,8 +43,22 @@ app.post('/midia/cadastrar', async (req,res)=>{
     }
  
 })
-
-
+//ROTA EDITAR PELO ID
+app.get('/midia/edit/id/:id', async (req, res) => {
+    try {
+        const id = req.params.id
+        const conexao = await pool.getConnection();
+        const sql = `SELECT * FROM midia WHERE id = ${id}`;
+        const [linhas] = await conexao.execute(sql);
+        conexao.release()
+        res.json(linhas[0])
+ 
+    } catch(error){
+        console.log(`O Erro que ocorreu foi:${error}`)
+        res.send(500).json({error:"Deu algum erro"})
+    }
+    }
+ );
 // Rota Mostrar - Beatriz  =)
 app.get("/midia/mostrar", async (req, res) => {
     try {
@@ -62,6 +76,8 @@ app.get("/midia/mostrar", async (req, res) => {
 
     }
 })
+
+
 
 // Rota DELETE - Pedro
 app.delete('/midia/deletar/:id', async (req, res) => {

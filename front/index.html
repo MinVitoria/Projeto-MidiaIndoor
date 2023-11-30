@@ -14,9 +14,11 @@
 
     <div class="inicio container-fluid row">   
         <div class="botoes_esquerdo col-3 ">
-            <button type="button" class="btn btn-dark mt-3 corzinha "id="btn_cad">Cadastrar</button>
+            <button type="button" class="btn btn-dark mt-2 corzinha "id="btn_cad">Cadastrar</button>
             <br>
-            <button type="button" class="btn btn-dark mt-3 corzinha " id="btn_rem">Remover</button>
+            <button type="button" class="btn btn-dark mt-2 corzinha " id="btn_rem">Remover</button>
+            <br>
+            <button type="button" class="btn btn-dark mt-2 corzinha " id="btn_ini">Inicio</button>
         </div>
         <div class="titulo col-5">
             <div class="ffh1">Conect</div>
@@ -30,10 +32,20 @@
             <br>
             <button type="button" class="btn btn-dark mt-2 corzinha " id="btn_bus">Buscar</button>
         </div>
+        <div class="login col-1">
+            <button type="button" class="bi bi-person-circle  text-xxl-end  btn btn-dark">    Login</button>
+        </div>
     </div>
 
     <br>
     <br>
+
+<!-- Login -->
+
+<div class="container " id="login">
+
+
+</body>
 
     <div id="inicio" class="row">
     <div id="ola" class="mb-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded col-5 ms-5 opacity-75">
@@ -122,7 +134,7 @@
 
     <!-- mostrar -->
     
-    <div id="buscar">
+    <div id="buscar" class="container d-none">
             <div class="input-group ">
                 <input type="text" class="form-control col-6 ms-5" id="input_buscar" placeholder="Digite sua busca">
                 <div class="col-2 ms-2">
@@ -140,17 +152,26 @@
             </div>
     </div>
 
-    <div id="mostrar">
+    <div id="mostrar" class="container d-none">
         <h2>Mostrar:</h2>
         <div id="saida">
             <!-- div saida para mostrar a busca-->
         </div>
-        <!--Rodape-->
-    <div class="container-main">
-        
+        <div class="container-main"></div>
     </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <footer class="conteiner-fluid bg dark text-white rounded">
+        <h2>Desenvolvedores:</h2>
+        <br>
+        <h3>Beatriz Neres</h3>
+        <br>
+        <h3>Pedro Macera</h3>
+        <br>
+        <h3>Yasmim Izaura</h3>
+        <br>
+        <h3>Yasmim Vitoria</h3>
+        <br>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 </html>
