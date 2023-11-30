@@ -39,13 +39,14 @@ btn_at.addEventListener("click", async () => {
   const d_i_atual = document.getElementById("nv_data_i").value
   const d_f_atual = document.getElementById("nv_data_f").value
   const status_atual = document.getElementById("nv_status").value
+  const id_atual = document.getElementById("nv_id").value
 
   let dados = await fetch("http://localhost:3307/midia/edit/", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ nome: nome_atual, tipo: tipo_atual, url: url_atual, tempo: tempo_atual, status: status_atual, data_inicio: d_i_atual, data_fim: d_f_atual }),
+    body: JSON.stringify({id: id_atual, nome: nome_atual, tipo: tipo_atual, url: url_atual, tempo: tempo_atual, status: status_atual, data_inicio: d_i_atual, data_fim: d_f_atual }),
   });
 
   if (dados.ok) {
@@ -72,9 +73,9 @@ function cadastrar() {
 }
 
 
-async function remover() {
+async function remover(id) {
   const resultado = window.confirm("Deseja excluir este usuário?");
-  if (resultado) {
+  if (resultado.ok) {
     let dados = await fetch(`http://localhost:3307/midia/remover/${id}`, {
       method: "DELETE",
       headers: {
@@ -84,8 +85,8 @@ async function remover() {
     });
 
     if (dados.ok) {
-      btn_tela_busca.click()
-      btn_select.click()
+      btn_bus.click()
+      btn_para_busca.click()
     }
   }
 }
@@ -122,6 +123,7 @@ async function editar_info(id) {
     document.getElementById("nv_data_i").value = dados.data_inicio
     document.getElementById("nv_data_f").value = dados.data_fim
     document.getElementById("nv_status").value = dados.status
+    document.getElementById("nv_id").value = dados.id
 
   }
 }
@@ -146,6 +148,7 @@ async function mostrar() {
   sumir("listar");
   aparecer("mostrar");
 
+  let html=""
   html +=
     `<div id="carouselExampleCaptions" class="carousel slide">
   <div class="carousel-indicators">
@@ -186,6 +189,7 @@ async function mostrar() {
 btn_para_busca.addEventListener("click", async () => {
   let input_buscar = document.getElementById("input_buscar").value;
   let opcao = document.getElementById("opcoes").value;
+  let html=""
   html += `<table class="table">
                 <thead>
                   <tr>    
@@ -222,7 +226,7 @@ btn_para_busca.addEventListener("click", async () => {
       <td class='text-start'>${dados.nome}</td>
       <td class='text-start'>${dados.status}</td>
       <td><i onclick="editar_info(${dados.id})" class="bi bi-pencil"></td>
-      <td><i onclick="excluir(${dados.id})" class="bi bi-trash"></i></td>
+      <td><i onclick="remover(${dados.id})" class="bi bi-trash"></i></td>
       </tr>`;
       }
     } else if (opcao == "id") {

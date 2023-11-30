@@ -82,7 +82,7 @@ app.get("/midia/mostrar", async (req, res) => {
 // Rota DELETE - Pedro
 app.delete('/midia/remover/:id', async (req, res) => {
    try {
-       const { id } = req.params;
+       const {id} = req.params.id;
        const conexao = await pool.getConnection();
        const sql = `DELETE FROM midia WHERE id = ${id}`;
        const [linhas] = await conexao.execute(sql);
@@ -122,7 +122,7 @@ app.put("/midia/edit/", async(req,res)=>{
         const {id, nome, tipo, status, data_inicio, data_fim, url, tempo}=req.body
 
         const conexao= await pool.getConnection()
-        const sql = `UPDATE midia SET nome="${nome}", tipo="${tipo}", status="${status}", data_inicio="${data_inicio}", data_fim="${data_fim}", url="${url}", tempo="${tempo}" WHERE  id=${id}`
+        const sql = `UPDATE midia SET nome="${nome}", tipo="${tipo}", status="${status}", data_inicio="${data_inicio}", data_fim="${data_fim}", url="${url}", tempo="${tempo}" WHERE id=${id}`
         const [linhas] = await conexao.execute(sql)
         console.log([linhas])
         conexao.release()
