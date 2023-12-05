@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Midia Indoor</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-</head>
-<body>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="estilo.css">
-   
+</head>
 
-    <div class="inicio container-fluid row">   
+<body>
+
+
+    <div class="inicio container-fluid row">
         <div class="botoes_esquerdo col-3 ">
-            <button type="button" class="btn btn-dark mt-2 corzinha "id="btn_cad">Cadastrar</button>
+            <button type="button" class="btn btn-dark mt-2 corzinha " id="btn_cad">Cadastrar</button>
             <br>
             <button type="button" class="btn btn-dark mt-2 corzinha " id="btn_rem">Remover</button>
             <br>
@@ -33,145 +36,182 @@
             <button type="button" class="btn btn-dark mt-2 corzinha " id="btn_bus">Buscar</button>
         </div>
         <div class="login col-1">
-            <button type="button" class="bi bi-person-circle  text-xxl-end  btn btn-dark">    Login</button>
+            <a href="http://127.0.0.1:5500/front/login.html">
+                <button type="button" class="bi bi-person-circle mt-3 text-xxl-end  btn btn-dark" id="btn_login">
+                    Login</button>
+            </a>
         </div>
     </div>
-
-    <br>
-    <br>
-
-<!-- Login -->
-
-</body>
-
-    <div id="inicio" class="row">
-    <div id="ola" class="mb-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded col-5 ms-5 opacity-75">
-       <h1>Bem-vindo!!!</h1>
-       <br>
-       <h4>Bem-vindo ao nosso site de cadastro de mídia indoor! Aqui, oferecemos uma solução completa para empresas que procuram alcançar seus clientes e colaboradores de forma direta e atrativa.  Por meio do nosso sistema de cadastro, você poderá gerenciar suas campanhas, controlar a exibição de conteúdos e ter relatórios completos sobre os resultados. Saiba mais sobre como podemos ajudar o seu negócio a ter sucesso com a mídia indoor!</h4>
-    </div>
-    <div id="imagem" class="col-4 ms-4 ">
-        <img src="psd_poster_frame_template_digital_screen_for_supermarket.jpg"
-        width="500px" height="400px" class="border border-3 border border-black">
-    </div>
-    </div>
-    <!-- cadastrar -->
-    <div class="container col-4 branco d-none" id="cadastrar">
-   
-        <h2>Cadastrar: </h2>
+    <!-- <div id="xxxxxxx" style="min-height: 75%;"> -->
+        <!-- início -->
         <br>
-        
-        <h4>Nome: </h4>
-        <input type="text" id="nome">
+        <br>
 
-        <h4>Tipo: </h4>
-        <select name="tipo" id="tipo">
-            <option value="I">Imagem</option>
-            <option value="V">Vídeo</option>
+        <div id="inicio" class="row">
+            <div id="ola" class="mb-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded col-5 ms-5 opacity-75">
+                <h1>Bem-vindo!!!</h1>
+                <br>
+                <h4>Bem-vindo ao nosso site de cadastro de mídia indoor! Aqui, oferecemos uma solução completa para
+                    empresas
+                    que procuram alcançar seus clientes e colaboradores de forma direta e atrativa. Por meio do nosso
+                    sistema de cadastro, você poderá gerenciar suas campanhas, controlar a exibição de conteúdos e ter
+                    relatórios completos sobre os resultados. Saiba mais sobre como podemos ajudar o seu negócio a ter
+                    sucesso com a mídia indoor!</h4>
+            </div>
+            <div id="imagem" class="col-4 ms-4 ">
+                <img src="psd_poster_frame_template_digital_screen_for_supermarket.jpg" width="500px" height="400px"
+                    class="border border-3 border border-black">
+            </div>
+        </div>
+        <!-- cadastrar -->
+        <div class="container col-4 branco d-none" id="cadastrar">
+
+            <h2>Cadastrar: </h2>
+            <br>
+
+            <h4>Nome: </h4>
+            <input type="text" id="nome">
+
+            <h4>Tipo: </h4>
+            <select name="tipo" id="tipo">
+                <option value="I">Imagem</option>
+                <option value="V">Vídeo</option>
             </select>
-       
-        <h4>Url: </h4>
-        <input type="text" id="url">
-       
-        <h4>Tempo na tela(s): </h4>
-        <input type="number" id="tempo">
-        
-        <h4>Data Incial: </h4>
-        <input type="date" id="data_i">
-        
-        <h4>Data Final: </h4>
-        <input type="date" id="data_f">
 
-        <h4>Status:</h4>
-        <select name="locais" id="status">
-            <option value="A">Ativo</option>
-            <option value="I">Inativo</option>
+            <h4>Url: </h4>
+            <input type="text" id="url">
+
+            <h4>Tempo na tela(s): </h4>
+            <input type="number" id="tempo">
+
+            <h4>Data Incial: </h4>
+            <input type="date" id="data_i">
+
+            <h4>Data Final: </h4>
+            <input type="date" id="data_f">
+
+            <h4>Status:</h4>
+            <select name="locais" id="status">
+                <option value="A">Ativo</option>
+                <option value="I">Inativo</option>
             </select>
             <br>
 
-        <button type="button" class="btn btn-dark" id="btn_add">Adicionar</button>
-    </div>
+            <button type="button" class="btn btn-dark" id="btn_add">Adicionar</button>
+        </div>
 
-    <!-- editar -->
-    <div class="container col-4 branco d-none" id="editar">
-   
-        <h2>Editar: </h2>
-        <br>
+        <!-- editar -->
+        <div class="container col-4 branco d-none" id="editar">
 
-        <h4>ID:</h4>
-        <input type="text" disabled hidden id="nv_id">
-        
-        <h4>Nome: </h4>
-        <input type="text" id="nv_nome">
-       
-        <h4>Tipo: </h4>
-        <select name="tipo" id="nv_tipo">
-            <option value="I">Imagem</option>
-            <option value="V">Vídeo</option>
+            <h2>Editar: </h2>
+            <br>
+
+            <h4>ID:</h4>
+            <input type="text" disabled hidden id="nv_id">
+
+            <h4>Nome: </h4>
+            <input type="text" id="nv_nome">
+
+            <h4>Tipo: </h4>
+            <select name="tipo" id="nv_tipo">
+                <option value="I">Imagem</option>
+                <option value="V">Vídeo</option>
             </select>
-       
-        <h4>Url: </h4>
-        <input type="text" id="nv_url">
-       
-        <h4>Tempo na tela(s): </h4>
-        <input type="number" id="nv_tempo">
-        
-        <h4>Data Incial: </h4>
-        <input type="date" id="nv_data_i">
-        
-        <h4>Data Final: </h4>
-        <input type="date" id="nv_data_f">
 
-        <h4>Status:</h4>
-        <select name="locais" id="nv_status">
-           <option value="A">Ativo</option>
-           <option value="I">Inativo</option>
-        </select>
+            <h4>Url: </h4>
+            <input type="text" id="nv_url">
+
+            <h4>Tempo na tela(s): </h4>
+            <input type="number" id="nv_tempo">
+
+            <h4>Data Incial: </h4>
+            <input type="date" id="nv_data_i">
+
+            <h4>Data Final: </h4>
+            <input type="date" id="nv_data_f">
+
+            <h4>Status:</h4>
+            <select name="locais" id="nv_status">
+                <option value="A">Ativo</option>
+                <option value="I">Inativo</option>
+            </select>
             <br>
 
             <button type="button" class="btn btn-dark" id="btn_at">Atualizar</button>
-    </div>
+        </div>
 
-    <!-- mostrar -->
-    
-    <div id="buscar" class="container d-none">
+        <!-- mostrar -->
+
+        <div id="buscar" class="container d-none">
             <div class="input-group ">
                 <input type="text" class="form-control col-6 ms-5" id="input_buscar" placeholder="Digite sua busca">
                 <div class="col-2 ms-2">
-                <select id="opcoes" class="form-select">
-                    <option value="todos">Todos</option>
-                    <option value="id">ID</option>
-                    <option value="nome">Nome</option>
-                </select>
-            </div>
-            <div class="input-group-append ms-3">
-                <button type="button" class="btn btn-dark" id="btn_para_busca">Buscar informações</button>
-            </div>
+                    <select id="opcoes" class="form-select">
+                        <option value="todos">Todos</option>
+                        <option value="id">ID</option>
+                        <option value="nome">Nome</option>
+                    </select>
+                </div>
+                <div class="input-group-append ms-3">
+                    <button type="button" class="btn btn-dark" id="btn_para_busca">Buscar informações</button>
+                </div>
             </div>/
             <div id="saida_buscar">
             </div>
-    </div>
-
-    <div id="mostrar" class="container d-none">
-        <h2>Mostrar:</h2>
-        <div id="saida">
-            <!-- div saida para mostrar a busca-->
         </div>
-        <div class="container-main"></div>
-    </div>
-    <footer class="conteiner-fluid bg dark text-white rounded">
-        <h2>Desenvolvedores:</h2>
-        <br>
-        <h3>Beatriz Neris</h3>
-        <br>
-        <h3>Pedro Macera</h3>
-        <br>
-        <h3>Yasmin Izaura</h3>
-        <br>
-        <h3>Yasmin Vitoria</h3>
-        <br>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <div id="mostrar" class="container d-none">
+            <h2>Mostrar:</h2>
+            <div id="saida">
+                <!-- div saida para mostrar a busca-->
+            </div>
+            <div class="container-main"></div>
+        </div>
+
+        <div>
+        </div>
+    <!-- </div> -->
+    <footer class="fs-6 display-6">
+        <div class="row gap-0 align-content-between ">
+            <div class="col-sm-4">
+                <div class="w-auto">
+                    <div class="display-6">Desenvolvedores:</div>
+                    <ul class="text-start">
+                        <li>Beatriz Neris</li>
+                        <li>Pedro Macera</li>
+                        <li>Yasmin Vitória</li>
+                        <li>Yasmin Izaura</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-4">
+
+                <h3>Contato:</h3>
+
+                <li>TEL:(018)99969-6996</li>
+                <li>EMAIL:conect.wave@gmail.com</li>
+
+                <li>EMAIL:conect.wave@gmail.com</li>
+
+
+            </div>
+            <div class="col-sm-4">
+
+                <h3>Desenvolvedores:</h3>
+
+                <li>Beatriz Neris</li>
+                <li>Pedro Macera</li>
+                <li>Yasmin Vitória</li>
+                <li>Yasmin Izaura</li>
+
+            </div>
+    </footer>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

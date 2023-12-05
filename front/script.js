@@ -7,8 +7,9 @@ const btn_bus = document.getElementById("btn_bus");
 const btn_add = document.getElementById("btn_add");
 const btn_at = document.getElementById("btn_at");
 const btn_para_busca = document.getElementById("btn_para_busca")
-// const btn_log = document.getElementById("btn_login");
-// const btn_log = document.getElementById("login_aqui");
+const btn_log = document.getElementById("btn_login");
+
+
 btn_ini.addEventListener("click", iniciar)
 
 btn_cad_tela.addEventListener("click", cadastrar)
@@ -17,6 +18,25 @@ btn_ed.addEventListener("click", editar)
 
 btn_bus.addEventListener("click", buscar)
 
+
+btn_add.addEventListener("click", async () => {
+
+  let nome = document.getElementById("nome").value
+  let tipo = document.getElementById("tipo").value
+  let url = document.getElementById("url").value
+  let tempo = document.getElementById("tempo").value
+  let data_inicio = document.getElementById("data_i").value
+  let data_fim = document.getElementById("data_f").value
+  let status = document.getElementById("status").value
+
+  let dados = await fetch(`http://localhost:3307/midia/cadastrar`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ nome: nome, tipo: tipo, url: url, tempo: tempo, status: status, data_inicio: data_inicio, data_fim: data_fim }),
+  });
+})
 
 
 // Evento ao clicar em mostrar
@@ -46,7 +66,7 @@ btn_at.addEventListener("click", async () => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({id: id_atual, nome: nome_atual, tipo: tipo_atual, url: url_atual, tempo: tempo_atual, status: status_atual, data_inicio: d_i_atual, data_fim: d_f_atual }),
+    body: JSON.stringify({ id: id_atual, nome: nome_atual, tipo: tipo_atual, url: url_atual, tempo: tempo_atual, status: status_atual, data_inicio: d_i_atual, data_fim: d_f_atual }),
   });
 
   if (dados.ok) {
@@ -75,19 +95,19 @@ function cadastrar() {
 
 async function remover(id) {
   const resultado = window.confirm("Deseja excluir este usuário?");
-  if (resultado.ok) {
-    let dados = await fetch(`http://localhost:3307/midia/remover/${id}`, {
+  if (resultado) {
+    let dados = await fetch(`http://localhost:3307/remover/id/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-      body: stringify.json({ id: id })
+      body: JSON.stringify({ id: id }),
     });
 
-    if (dados.ok) {
-      btn_bus.click()
-      btn_para_busca.click()
-    }
+    btn_bus.click()
+    btn_para_busca.click()
+    location.reload(true)
+
   }
 }
 
@@ -138,58 +158,11 @@ function buscar() {
 
 }
 
-// mostrar e sumir ou outros
-async function mostrar() {
-
-  sumir("ola");
-  sumir("imagem");
-  sumir("cadastrar");
-  sumir("editar");
-  sumir("listar");
-  aparecer("mostrar");
-
-  let html=""
-  html +=
-    `<div id="carouselExampleCaptions" class="carousel slide">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
-      </div>
-    </div>`
-
-
-  let resposta = await fetch(`http://localhost:3307/midia/midia/:id`)
-  if (resposta.ok) {
-
-    document.getElementById("nv_nome").value = dados.nome
-    document.getElementById("nv_url").value = dados.url
-    document.getElementById("nv_tempo").value = dados.tempo
-    document.getElementById("nv_data_i").value = dados.data_inicio
-    document.getElementById("nv_data_f").value = dados.data_fim
-    document.getElementById("nv_status").value = dados.status
-
-  }
-}
 
 btn_para_busca.addEventListener("click", async () => {
   let input_buscar = document.getElementById("input_buscar").value;
   let opcao = document.getElementById("opcoes").value;
-  let html=""
+  let html = ""
   html += `<table class="table">
                 <thead>
                   <tr>    
@@ -225,8 +198,8 @@ btn_para_busca.addEventListener("click", async () => {
       <td>${dados.id}</td>
       <td class='text-start'>${dados.nome}</td>
       <td class='text-start'>${dados.status}</td>
-      <td><i onclick="editar_info(${dados.id})" class="bi bi-pencil"></td>
-      <td><i onclick="remover(${dados.id})" class="bi bi-trash"></i></td>
+      <td><i onclick="editar_info(${dados.id})" class="bi bi-pencil"></i></td>
+      <td><i onclick="remover(${dados.id})" class="bi bi-trash" id="lixo"></i></td>
       </tr>`;
       }
     } else if (opcao == "id") {
@@ -234,8 +207,8 @@ btn_para_busca.addEventListener("click", async () => {
       <td>${array_resultado.id}</td>
       <td class='text-start'>${array_resultado.nome}</td>
       <td class='text-start'>${array_resultado.status}</td>
-      <td><i onclick="editar(${array_resultado.id})" class="bi bi-pencil"></i></td>
-      <td><i onclick="excluir(${array_resultado.id})"class="bi bi-trash"></i></td>
+      <td><i onclick="editar_info(${array_resultado.id})" class="bi bi-pencil"></i></td>
+      <td><i onclick="remover(${array_resultado.id})"class="bi bi-trash"></i></td>
       </tr>`;
     }
 
@@ -245,13 +218,40 @@ btn_para_busca.addEventListener("click", async () => {
 
 });
 
-async function login() {
+
+async function mostrar() {
+
+  sumir("ola");
+  sumir("imagem");
+  sumir("cadastrar");
+  sumir("editar");
+  sumir("listar");
+  aparecer("mostrar");
 
 
-//login.addEventListener("click", async () => {
-//aparecer("login");
+  let resposta = await fetch(`http://localhost:3307/midia/midia/:id`)
+  if (resposta.ok) {
 
-// })
+    let nome = document.getElementById("nome").value
+    let tipo = document.getElementById("tipo").value
+    let url = document.getElementById("url").value
+    let tempo = document.getElementById("tempo").value
+    let data_inicio = document.getElementById("data_i").value
+    let data_fim = document.getElementById("data_f").value
+    let status = document.getElementById("status").value
+    
+    let array_resultado = await resposta.json();
 
+    for(const dados of array_resultado){
+    html += `
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="${dados.url}" class="d-block w-100">
+      </div>
+    </div>
+  </div>`
+
+  }
 }
-
+}

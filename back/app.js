@@ -80,18 +80,18 @@ app.get("/midia/mostrar", async (req, res) => {
 
 
 // Rota DELETE - Pedro
-app.delete('/midia/remover/:id', async (req, res) => {
+app.delete('/remover/id/:id', async (req, res) => {
    try {
-       const {id} = req.params.id;
+       const id = req.params.id;
        const conexao = await pool.getConnection();
-       const sql = `DELETE FROM midia WHERE id = ${id}`;
+       const sql = `DELETE FROM midia WHERE id=${id}`;
        const [linhas] = await conexao.execute(sql);
        conexao.release();
-       if(linhas.affectedRows > 0){
-           res.json({message: 'Deletado com sucesso!'});
-       } else {
-           res.json({message: `Não foi possível deletar o registro com id=${id}`});
-       }
+    //    if(linhas.affectedRows > 0){
+    //        res.json({message: 'Deletado com sucesso!'});
+    //    } else {
+    //        res.json({message: `Não foi possível deletar o registro com id=${id}`});
+    //    }
    } catch (error) {
        console.log(`O Erro que ocorreu foi: ${error}`);
        res.status(500).json({error: "Deu algum erro na exclusão"});
@@ -143,6 +143,21 @@ app.get("/midia/nome/:nome",async (req, res) => {
         console.log([linhas])
         conexao.release()
         res.json(linhas)
+    }catch(error){
+        console.log(`O Erro que ocorreu foi ${error}`)
+        res.send(500).json({error:"Deu algum erro no delete"})
+    }
+ })
+
+ app.get("/midia/id/:id",async (req, res) => {
+    try{
+        const id_passado = req.params.id
+        const conexao = await pool.getConnection()
+        const sql = `SELECT * FROM midia where id = ${id_passado}`
+        const [linhas] = await conexao.execute(sql)
+        console.log([linhas])
+        conexao.release()
+        res.json(linhas[0])
     }catch(error){
         console.log(`O Erro que ocorreu foi ${error}`)
         res.send(500).json({error:"Deu algum erro no delete"})
