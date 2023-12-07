@@ -60,22 +60,22 @@ app.get('/midia/edit/id/:id', async (req, res) => {
     }
  );
 // Rota Mostrar - Beatriz  =)
-app.get("/midia/mostrar", async (req, res) => {
-    try {
+// app.get("/midia/mostrar", async (req, res) => {
+//     try {
 
-        const conexao = await pool.getConnection()
-        const sql = `SELECT * FROM midia` 
-        const [linhas] = await conexao.execute(sql)
-        conexao.release()
-        res.json(linhas)
+//         const conexao = await pool.getConnection()
+//         const sql = `SELECT * FROM midia` 
+//         const [linhas] = await conexao.execute(sql)
+//         conexao.release()
+//         res.json(linhas)
 
-    } catch  (error) {
-        console.log(`O Erro que ocorreu foi: ${error}`)
-        res.status(500).json({error: "Deu algum erro na conexão"})
+//     } catch  (error) {
+//         console.log(`O Erro que ocorreu foi: ${error}`)
+//         res.status(500).json({error: "Deu algum erro na conexão"})
 
 
-    }
-})
+//     }
+// })
 
 
 

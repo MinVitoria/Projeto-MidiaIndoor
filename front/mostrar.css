@@ -1,4 +1,59 @@
-body{
-    /* background-image: url("https://i.gifer.com/P0ck.mp4"); */
-    background-color: green;
+.carousel {
+    width: 100%;
+    height: 400px;
+    position: relative;
+  }
+  
+  .slides {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  
+  .slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none;
+  }
+  
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .navigation {
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .navigation label {
+    width: 20px;
+    height: 20px;
+    background-color: #1b1b1b;
+    border-radius: 50%;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  #slide1:checked ~ .slides .slide:nth-child(1),
+  #slide2:checked ~ .slides .slide:nth-child(2),
+  #slide3:checked ~ .slides .slide:nth-child(3) {
+    display: block;
+  }
+
+.local_btn{
+    display: flex;
+    margin-left: 50%;
+    margin-top: 250px;
+    padding-top: 5px;
+    padding-bottom: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+
 }

@@ -9,6 +9,7 @@ const btn_at = document.getElementById("btn_at");
 const btn_para_busca = document.getElementById("btn_para_busca")
 const btn_log = document.getElementById("btn_login");
 
+//btn_mos.addEventListener("click", mostrar_div)
 
 btn_ini.addEventListener("click", iniciar)
 
@@ -40,14 +41,14 @@ btn_add.addEventListener("click", async () => {
 
 
 // Evento ao clicar em mostrar
-btn_mos.addEventListener("click", mostrar)
+// btn_mos.addEventListener("click", mostrar)
 
 function iniciar() {
   aparecer("ola");
   aparecer("imagem");
   sumir("cadastrar");
   sumir("buscar");
-  sumir("editar")
+  sumir("editar");
 }
 
 btn_at.addEventListener("click", async () => {
@@ -88,7 +89,7 @@ function cadastrar() {
   sumir("imagem");
   sumir("editar");
   sumir("buscar")
-  sumir("mostrar")
+  //sumir("mostrar")
 
 }
 
@@ -118,7 +119,7 @@ function editar() {
   sumir("imagem");
   sumir("cadastrar");
   sumir("buscar")
-  sumir("mostrar")
+// sumir("mostrar")
 
 }
 
@@ -128,7 +129,7 @@ async function editar_info(id) {
   sumir("imagem");
   sumir("cadastrar");
   sumir("buscar")
-  sumir("mostrar")
+ // sumir("mostrar")
 
   let resposta = await fetch(`http://localhost:3307/midia/edit/id/${id}`)
   if (resposta.ok) {//verificar se retornou status code 200-ok para a busca
@@ -153,7 +154,7 @@ function buscar() {
   sumir("ola");
   sumir("imagem");
   sumir("cadastrar");
-  sumir("mostrar");
+  //sumir("mostrar");
   sumir("editar");
 
 }
@@ -219,39 +220,45 @@ btn_para_busca.addEventListener("click", async () => {
 });
 
 
+//function mostrar_div() {
+
+  //sumir("ola");
+ // sumir("imagem");
+  //sumir("cadastrar");
+  //sumir("editar");
+  // sumir("listar");
+ // aparecer("mostrar");
+ // mostrar();
+//}
+
 async function mostrar() {
 
-  sumir("ola");
-  sumir("imagem");
-  sumir("cadastrar");
-  sumir("editar");
-  sumir("listar");
-  aparecer("mostrar");
-
-
-  let resposta = await fetch(`http://localhost:3307/midia/midia/:id`)
+  let html = ""
+  
+  let resposta = await fetch(`http://localhost:3307/midia/mostrar`)
   if (resposta.ok) {
 
-    let nome = document.getElementById("nome").value
-    let tipo = document.getElementById("tipo").value
+    
     let url = document.getElementById("url").value
     let tempo = document.getElementById("tempo").value
     let data_inicio = document.getElementById("data_i").value
     let data_fim = document.getElementById("data_f").value
     let status = document.getElementById("status").value
-    
+
+    document.getElementById("saida_mostrar").innerHTML = "";
+
     let array_resultado = await resposta.json();
 
-    for(const dados of array_resultado){
-    html += `
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="${dados.url}" class="d-block w-100">
-      </div>
-    </div>
-  </div>`
+    for (const dados of array_resultado) {
+    
+    html +=`
+     <div class="slide">
+       <img src="${dados.url}">
+     </div>
+   </div>`
 
+    }
   }
-}
+
+  document.getElementById("saida_mostrar").innerHTML = html;
 }
