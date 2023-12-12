@@ -9,7 +9,7 @@ const btn_at = document.getElementById("btn_at");
 const btn_para_busca = document.getElementById("btn_para_busca")
 const btn_log = document.getElementById("btn_login");
 
-//btn_mos.addEventListener("click", mostrar_div)
+btn_mos.addEventListener("click", mostrar_div)
 
 btn_ini.addEventListener("click", iniciar)
 
@@ -105,10 +105,9 @@ async function remover(id) {
       body: JSON.stringify({ id: id }),
     });
 
-    btn_bus.click()
     btn_para_busca.click()
     location.reload(true)
-
+    btn_para_busca.click()
   }
 }
 
@@ -220,16 +219,16 @@ btn_para_busca.addEventListener("click", async () => {
 });
 
 
-//function mostrar_div() {
+function mostrar_div() {
 
-  //sumir("ola");
- // sumir("imagem");
-  //sumir("cadastrar");
-  //sumir("editar");
-  // sumir("listar");
- // aparecer("mostrar");
- // mostrar();
-//}
+  sumir("ola");
+  sumir("imagem");
+  sumir("cadastrar");
+  sumir("editar");
+  sumir("listar");
+ aparecer("pag_mostrar");
+
+}
 
 async function mostrar() {
 

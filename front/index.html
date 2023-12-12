@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Midia Indoor</title>
+    <link rel="stylesheet" href="mostrar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -31,9 +32,9 @@
         <div class="botoes_direito col-3">
             <button type="button" class="btn btn-dark mt-2 corzinha " id="btn_ed">Editar</button>
             <br>
-            <a href="http://127.0.0.1:5501/front/mostrar.html">
+            <!-- <a href="http://127.0.0.1:5501/front/mostrar.html"> -->
             <button type="button" class="btn btn-dark mt-2 corzinha " id="btn_mos">Mostrar</button>
-            </a>
+            <!-- </a> -->
             <br>
             <button type="button" class="btn btn-dark mt-2 corzinha " id="btn_bus">Buscar</button>
         </div>
@@ -142,7 +143,17 @@
             <button type="button" class="btn btn-dark" id="btn_at">Atualizar</button>
         </div>
 
-        <!-- mostrar -->
+      <!-- MOSTRAR-->
+
+      <div class="container d-none" id="pag_carousel">
+        <button type="button" onclick="mostrar()" id="começo_mostrar" class="local_btn rounded-circle text-center "><i class="bi bi-caret-right-fill"></i></button>
+          <div id="saida_mostrar" class="carousel">
+              </div>
+            </div>
+      
+       </div>
+
+       <!--BUSCAR -->
 
         <div id="buscar" class="container d-none">
             <div class="input-group ">
@@ -161,7 +172,7 @@
             <div id="saida_buscar">
             </div>
         </div>
-        <!-- DIV MOSTRAR -->
+
 
         <div>
         </div>
