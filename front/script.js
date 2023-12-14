@@ -8,10 +8,10 @@ const btn_add = document.getElementById("btn_add");
 const btn_at = document.getElementById("btn_at");
 const btn_para_busca = document.getElementById("btn_para_busca")
 const btn_log = document.getElementById("btn_login");
-const btn_limpar_cad = document.getElementById("btn_limpar_cad");
+//const btn_limpar_cad = document.getElementById("btn_limpar_cad");
  
  
-btn_limpar_cad.addEventListener("click", limpar)
+//btn_limpar_cad.addEventListener("click", limpar)
  
 btn_ini.addEventListener("click", iniciar)
  
@@ -80,8 +80,8 @@ btn_at.addEventListener("click", async () => {
   });
  
   if (dados.ok) {
-    btn_bus.click
-    btn_para_busca.click
+    btn_bus.click()
+    btn_para_busca.click()
   }
 })
  
@@ -104,6 +104,7 @@ function cadastrar() {
  
  
 async function remover(id) {
+
   const resultado = window.confirm("Deseja excluir este usuário?");
   if (resultado) {
     let dados = await fetch(`http://localhost:3307/remover/id/${id}`, {
@@ -111,12 +112,17 @@ async function remover(id) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: id }),
+     // body: JSON.stringify({ id: id }),
     });
+    
+   //btn_bus.click()
+  // btn_para_busca.click()
+
     if (dados.ok) {
  
-      btn_bus.click
-      btn_para_busca.click
+    //  btn_ini.click()
+      btn_bus.click();
+      btn_para_busca.click()
     }
   }
   }

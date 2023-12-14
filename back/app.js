@@ -87,6 +87,7 @@ app.delete('/remover/id/:id', async (req, res) => {
        const sql = `DELETE FROM midia WHERE id=${id}`;
        const [linhas] = await conexao.execute(sql);
        conexao.release();
+       res.json({message: 'Deletado com sucesso!'});
     //    if(linhas.affectedRows > 0){
     //        res.json({message: 'Deletado com sucesso!'});
     //    } else {
