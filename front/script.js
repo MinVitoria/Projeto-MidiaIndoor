@@ -8,20 +8,22 @@ const btn_add = document.getElementById("btn_add");
 const btn_at = document.getElementById("btn_at");
 const btn_para_busca = document.getElementById("btn_para_busca")
 const btn_log = document.getElementById("btn_login");
-
-btn_mos.addEventListener("click", mostrar_div)
-
+const btn_limpar_cad = document.getElementById("btn_limpar_cad");
+ 
+ 
+btn_limpar_cad.addEventListener("click", limpar)
+ 
 btn_ini.addEventListener("click", iniciar)
-
+ 
 btn_cad_tela.addEventListener("click", cadastrar)
-
+ 
 btn_ed.addEventListener("click", editar)
-
+ 
 btn_bus.addEventListener("click", buscar)
-
-
+ 
+ 
 btn_add.addEventListener("click", async () => {
-
+ 
   let nome = document.getElementById("nome").value
   let tipo = document.getElementById("tipo").value
   let url = document.getElementById("url").value
@@ -29,7 +31,7 @@ btn_add.addEventListener("click", async () => {
   let data_inicio = document.getElementById("data_i").value
   let data_fim = document.getElementById("data_f").value
   let status = document.getElementById("status").value
-
+ 
   let dados = await fetch(`http://localhost:3307/midia/cadastrar`, {
     method: "POST",
     headers: {
@@ -38,11 +40,18 @@ btn_add.addEventListener("click", async () => {
     body: JSON.stringify({ nome: nome, tipo: tipo, url: url, tempo: tempo, status: status, data_inicio: data_inicio, data_fim: data_fim }),
   });
 })
-
-
-// Evento ao clicar em mostrar
-// btn_mos.addEventListener("click", mostrar)
-
+ 
+ 
+function limpar(){
+  document.getElementById("nome").value = ""
+  document.getElementById("tipo").value = ""
+  document.getElementById("url").value = ""
+  document.getElementById("tempo").value = ""
+  document.getElementById("data_i").value= ""
+  document.getElementById("data_f").value= ""
+  document.getElementById("status").value= ""
+}
+ 
 function iniciar() {
   aparecer("ola");
   aparecer("imagem");
@@ -50,9 +59,9 @@ function iniciar() {
   sumir("buscar");
   sumir("editar");
 }
-
+ 
 btn_at.addEventListener("click", async () => {
-
+ 
   const nome_atual = document.getElementById("nv_nome").value
   const tipo_atual = document.getElementById("nv_tipo").value
   const url_atual = document.getElementById("nv_url").value
@@ -61,7 +70,7 @@ btn_at.addEventListener("click", async () => {
   const d_f_atual = document.getElementById("nv_data_f").value
   const status_atual = document.getElementById("nv_status").value
   const id_atual = document.getElementById("nv_id").value
-
+ 
   let dados = await fetch("http://localhost:3307/midia/edit/", {
     method: "PUT",
     headers: {
@@ -69,20 +78,20 @@ btn_at.addEventListener("click", async () => {
     },
     body: JSON.stringify({ id: id_atual, nome: nome_atual, tipo: tipo_atual, url: url_atual, tempo: tempo_atual, status: status_atual, data_inicio: d_i_atual, data_fim: d_f_atual }),
   });
-
+ 
   if (dados.ok) {
-    btn_bus.click()
-    btn_para_busca.click()
+    btn_bus.click
+    btn_para_busca.click
   }
 })
-
+ 
 function aparecer(id) {
   document.getElementById(id).classList.remove("d-none");
 }
 function sumir(id) {
   document.getElementById(id).classList.add("d-none");
 }
-
+ 
 function cadastrar() {
   aparecer("cadastrar");
   sumir("ola");
@@ -90,10 +99,10 @@ function cadastrar() {
   sumir("editar");
   sumir("buscar")
   //sumir("mostrar")
-
+ 
 }
-
-
+ 
+ 
 async function remover(id) {
   const resultado = window.confirm("Deseja excluir este usuário?");
   if (resultado) {
@@ -104,14 +113,15 @@ async function remover(id) {
       },
       body: JSON.stringify({ id: id }),
     });
-
-    btn_para_busca.click()
-    location.reload(true)
-    btn_para_busca.click()
+    if (dados.ok) {
+ 
+      btn_bus.click
+      btn_para_busca.click
+    }
   }
-}
-
-
+  }
+ 
+ 
 function editar() {
   aparecer("editar");
   sumir("ola");
@@ -119,20 +129,20 @@ function editar() {
   sumir("cadastrar");
   sumir("buscar")
 // sumir("mostrar")
-
+ 
 }
-
+ 
 async function editar_info(id) {
   aparecer("editar");
   sumir("ola");
   sumir("imagem");
   sumir("cadastrar");
   sumir("buscar")
- // sumir("mostrar")
-
+// sumir("mostrar")
+ 
   let resposta = await fetch(`http://localhost:3307/midia/edit/id/${id}`)
   if (resposta.ok) {//verificar se retornou status code 200-ok para a busca
-
+ 
     let dados = await resposta.json()
     console.log(dados)
     //   btn_mos.click()
@@ -144,10 +154,10 @@ async function editar_info(id) {
     document.getElementById("nv_data_f").value = dados.data_fim
     document.getElementById("nv_status").value = dados.status
     document.getElementById("nv_id").value = dados.id
-
+ 
   }
 }
-
+ 
 function buscar() {
   aparecer("buscar");
   sumir("ola");
@@ -155,29 +165,29 @@ function buscar() {
   sumir("cadastrar");
   //sumir("mostrar");
   sumir("editar");
-
+ 
 }
-
-
+ 
+ 
 btn_para_busca.addEventListener("click", async () => {
   let input_buscar = document.getElementById("input_buscar").value;
   let opcao = document.getElementById("opcoes").value;
   let html = ""
   html += `<table class="table">
-                <thead>
-                  <tr>    
-                    <th scope="col">ID</th>
-                    <th scope="col" class='text-start'>Nome</th>
-                    <th scope="col" class='text-start'>Status</th>
-                    <th scope="col" class='text-start'>Editar</th>
-                    <th scope="col" class='text-start'>Remover</th>
-                  </tr>
-                </thead>
-                <tbody>`;
-
+<thead>
+<tr>    
+<th scope="col">ID</th>
+<th scope="col" class='text-start'>Nome</th>
+<th scope="col" class='text-start'>Status</th>
+<th scope="col" class='text-start'>Editar</th>
+<th scope="col" class='text-start'>Remover</th>
+</tr>
+</thead>
+<tbody>`;
+ 
   document.getElementById("saida_buscar").innerHTML = "";
   document.getElementById("input_buscar").value = ""
-
+ 
   let resposta = "";
   if (opcao == "todos") {
     resposta = await fetch(`http://localhost:3307/midia/mostrar`);
@@ -186,78 +196,76 @@ btn_para_busca.addEventListener("click", async () => {
   } else if (opcao == "nome") {
     resposta = await fetch(`http://localhost:3307/midia/nome/${input_buscar}`);
   }
-
+ 
   //  
-
+ 
   if (resposta.ok) {
     html = html;
     let array_resultado = await resposta.json();
     if (opcao == "todos" || opcao == "nome") {
       for (const dados of array_resultado) {
         html += `<tr>                
-      <td>${dados.id}</td>
-      <td class='text-start'>${dados.nome}</td>
-      <td class='text-start'>${dados.status}</td>
-      <td><i onclick="editar_info(${dados.id})" class="bi bi-pencil"></i></td>
-      <td><i onclick="remover(${dados.id})" class="bi bi-trash" id="lixo"></i></td>
-      </tr>`;
+<td>${dados.id}</td>
+<td class='text-start'>${dados.nome}</td>
+<td class='text-start'>${dados.status}</td>
+<td><i onclick="editar_info(${dados.id})" class="bi bi-pencil"></i></td>
+<td><i onclick="remover(${dados.id})" class="bi bi-trash" id="lixo"></i></td>
+</tr>`;
       }
     } else if (opcao == "id") {
       html += `<tr>                
-      <td>${array_resultado.id}</td>
-      <td class='text-start'>${array_resultado.nome}</td>
-      <td class='text-start'>${array_resultado.status}</td>
-      <td><i onclick="editar_info(${array_resultado.id})" class="bi bi-pencil"></i></td>
-      <td><i onclick="remover(${array_resultado.id})"class="bi bi-trash"></i></td>
-      </tr>`;
+<td>${array_resultado.id}</td>
+<td class='text-start'>${array_resultado.nome}</td>
+<td class='text-start'>${array_resultado.status}</td>
+<td><i onclick="editar_info(${array_resultado.id})" class="bi bi-pencil"></i></td>
+<td><i onclick="remover(${array_resultado.id})"class="bi bi-trash"></i></td>
+</tr>`;
     }
-
+ 
     html += `</tbody></table>`;
   }
   document.getElementById("saida_buscar").innerHTML = html;
-
+ 
 });
-
-
-function mostrar_div() {
-
-  sumir("ola");
-  sumir("imagem");
-  sumir("cadastrar");
-  sumir("editar");
-  sumir("listar");
- aparecer("pag_mostrar");
-
-}
-
-async function mostrar() {
-
-  let html = ""
-  
-  let resposta = await fetch(`http://localhost:3307/midia/mostrar`)
-  if (resposta.ok) {
-
+ 
+ 
+//function mostrar_div() {
+ 
+// sumir("ola");
+// sumir("imagem");
+// sumir("cadastrar");
+// sumir("editar");
+// sumir("listar");
+//aparecer("pag_mostrar");
+ 
+//}
+ 
+// async function mostrar() {
+ 
+//   let html = ""
+//   let resposta = await fetch(`http://localhost:3307/midia/mostrar`)
+//   if (resposta.ok) {
+ 
     
-    let url = document.getElementById("url").value
-    let tempo = document.getElementById("tempo").value
-    let data_inicio = document.getElementById("data_i").value
-    let data_fim = document.getElementById("data_f").value
-    let status = document.getElementById("status").value
-
-    document.getElementById("saida_mostrar").innerHTML = "";
-
-    let array_resultado = await resposta.json();
-
-    for (const dados of array_resultado) {
-    
-    html +=`
-     <div class="slide">
-       <img src="${dados.url}">
-     </div>
-   </div>`
-
-    }
-  }
-
-  document.getElementById("saida_mostrar").innerHTML = html;
-}
+//     let url = document.getElementById("url").value
+//     let tempo = document.getElementById("tempo").value
+//     let data_inicio = document.getElementById("data_i").value
+//     let data_fim = document.getElementById("data_f").value
+//     let status = document.getElementById("status").value
+ 
+//     document.getElementById("saida_mostrar").innerHTML = "";
+ 
+//     let array_resultado = await resposta.json();
+ 
+//     for (const dados of array_resultado) {
+//     html +=`
+//      <div class="slide">
+//        <img src="${dados.url}">
+//      </div>
+//    </div>`
+ 
+//     }
+//   }
+ 
+//   document.getElementById("saida_mostrar").innerHTML = html;
+// }
